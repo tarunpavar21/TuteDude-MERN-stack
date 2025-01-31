@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reaction Timer</title>
+    <style>
+        #shape {
+            background-color: red;
+            height: 200px;
+            width: 200px;
+            position: absolute; /* Use absolute positioning for full-screen movement */
+        }
+    </style>
+</head>
+<body>
+    <h1>Reaction Tester</h1>
+    <p>Click on the boxes as soon as you can!</p>
+    <div id="shape"></div>
+
+    <script>
+        var start = new Date().getTime();
+
+        function getRandomColor() {
+            var letters = '0123456789ABCDEF';
+            var color = '#';
+            for (var i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
+        function move() {
+            var left, top, wh;
+
+            // Get random positions for the box within the viewport
+            left = Math.random() * (window.innerWidth - 400); // Subtract max box size for safety
+            top = Math.random() * (window.innerHeight - 400); // Subtract max box size for safety
+            wh = Math.random() * 200 + 100; // Box size between 100px and 300px
+
+            var shape = document.getElementById("shape");
+
+            shape.style.left = left + "px";
+            shape.style.top = top + "px";
+            shape.style.width = wh + "px";
+            shape.style.height = wh + "px";
+            shape.style.display = "block";
+            shape.style.backgroundColor = getRandomColor();
+
+            start = new Date().getTime();
+        }
+
+        move(); // Display the first box
+
+        document.getElementById("shape").onclick = function () {
+            document.getElementById("shape").style.display = "none";
+
+            var end = new Date().getTime();
+            var timeTaken = (end - start) / 1000;
+            alert("Time taken: " + timeTaken + " seconds");
+
+            move(); // Show a new box
+        };
+    </script>
+</body>
+</html>
