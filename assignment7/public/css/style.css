@@ -1,0 +1,281 @@
+/* Reset some default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: orchid; /* Light background */
+    font-family: 'Arial', sans-serif;
+}
+
+/* Styling for the Todo List Box */
+.box {
+    width: 80%;
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fefe97;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+.box:hover {
+    transform: scale(1.05); /* Hover animation for the box */
+}
+
+h1 {
+    text-align: center;
+    font-size: 2rem;
+    color: #4A5568;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* Styling for the Todo Items */
+p {
+    font-size: 1.125rem;
+    color: #2D3748;
+    padding: 10px;
+    border-bottom: 1px solid #E2E8F0;
+    transition: color 0.3s ease-in-out;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.6s forwards;
+}
+
+p:hover {
+    color: #38B2AC; /* Change text color on hover */
+}
+
+/* Form Styling */
+form {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+input[type="text"] {
+    width: 80%;
+    padding: 10px;
+    border: 1px solid #E2E8F0;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease-in-out;
+}
+
+input[type="text"]:focus {
+    border-color: #38B2AC; /* Focus effect */
+    outline: none;
+}
+/* Styling for the Todo Items */
+.item {
+    display: flex;
+    align-items: center; /* Vertically align checkbox and text */
+    margin-bottom: 10px;
+}
+
+.check {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #38B2AC; /* Border color */
+    border-radius: 4px; /* Slightly rounded corners */
+    margin-right: 10px; /* Adds space between checkbox and text */
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease-in-out;
+}
+
+/* Checkmark animation */
+.check:checked {
+    background-color: #38B2AC; /* Green background when checked */
+    border-color: #2C7A7B; /* Darker border color when checked */
+}
+
+/* Checkmark inside the checkbox */
+.check:checked::before {
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 20px;
+    border-left: 4px solid #fff;
+    border-bottom: 4px solid #fff;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+/* Hover effect: Slightly enlarge when hovered */
+.check:hover {
+    transform: scale(1.1);
+}
+
+/* Active (click) effect */
+.check:active {
+    transform: scale(0.95);
+}
+
+/* When checkbox is checked, add line-through to the text */
+.check:checked + p {
+    text-decoration: line-through; /* Line-through effect */
+    color: #A0AEC0; /* Lighter color for checked tasks */
+}
+
+/* Styling for the Todo List Box */
+.box {
+    width: 80%;
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fefe97;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Styling for the Todo Items */
+p {
+    font-size: 1.125rem;
+    color: #2D3748;
+    padding: 10px;
+    border-bottom: 1px solid #E2E8F0;
+    transition: color 0.3s ease-in-out;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.6s forwards;
+}
+
+/* Todo item fade-in animation */
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Plus Button Styling */
+button {
+    padding: 12px 20px;
+    background-color: #38B2AC; /* Tailwind-like color */
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60px; /* Make it circular */
+    height: 60px; /* Make it circular */
+    font-size: 1.5rem;
+    animation: pulse 1.5s infinite, rotate 5s linear infinite; /* Added continuous animations */
+}
+
+/* Hover effect */
+button:hover {
+    background-color: #319795; /* Darker shade on hover */
+    transform: scale(1.1); /* Slightly grow the button */
+}
+
+/* Active (click) effect */
+button:active {
+    transform: scale(0.98); /* Slightly shrink the button when clicked */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2); /* Adding a slight shadow on click */
+}
+
+/* Ripple animation effect */
+button:before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.4);
+    opacity: 0;
+    transform: scale(0);
+    animation: ripple 0.6s ease-out;
+}
+
+button:focus {
+    outline: none;
+}
+
+
+/* Ripple animation */
+@keyframes ripple {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+/* Pulsing animation */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.2);
+        opacity: 0.7;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Continuous rotation animation */
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Todo item fade-in animation */
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .box {
+        width: 90%;
+    }
+
+    h1 {
+        font-size: 1.75rem;
+    }
+
+    input[type="text"] {
+        width: 70%;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    input[type="text"] {
+        width: 60%;
+    }
+}
